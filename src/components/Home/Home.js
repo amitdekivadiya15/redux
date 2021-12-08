@@ -1,7 +1,23 @@
-import React from "react";
-
+import React, { useEffect } from "react";
+import MovieListing from "../MovieListing/MovieListing";
+import {
+  fetchAsyncMovies,
+  fetchAsyncShows,
+} from "../../features/movies/movieSlice";
+import { useDispatch } from "react-redux";
 const Home = () => {
-  return <div>Home</div>;
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(fetchAsyncMovies());
+    dispatch(fetchAsyncShows());
+  }, [dispatch]);
+  return (
+    <>
+      <div className="banner-img">
+        <MovieListing />
+      </div>
+    </>
+  );
 };
 
 export default Home;
